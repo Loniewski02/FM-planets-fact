@@ -2,6 +2,10 @@ const burgerBtn = document.querySelector('.nav__burger-btn');
 const navItems = document.querySelector('.nav__items');
 const allNavItems = navItems.querySelectorAll('.nav__items-item');
 const allSections = document.querySelectorAll('.planet');
+const rotation = document.querySelector('.rotation');
+const revolution = document.querySelector('.revolution');
+const radius = document.querySelector('.radius');
+const temperature = document.querySelector('.temp');
 const URL = 'data.json';
 
 const handleNav = () => {
@@ -31,7 +35,6 @@ gsap.to('.hero-bg', {
 
 async function handleData() {
 	const response = await axios.get(URL);
-
 	try {
 		console.log(response.data);
 		createSection(response.data);
@@ -40,7 +43,29 @@ async function handleData() {
 	}
 }
 
-const show = w => {
+async function handleBottomInfo() {
+	const response = await axios.get(URL);
+	const data = response.data;
+	try {
+		for (let i = 0; i < data.length; i++) {
+			if (
+				allNavItems[i].classList.contains('nav__items-item--active') &&
+				allNavItems[i].classList.contains(`nav__items-item--${data[i].name.toLowerCase()}`)
+			) {
+				rotation.textContent = data[i].rotation;
+				radius.textContent = data[i].radius;
+				revolution.textContent = data[i].revolution;
+				temperature.textContent = data[i].temperature;
+			}
+		}
+	} catch (error) {
+		console.error(error);
+	}
+}
+
+handleBottomInfo();
+
+const slide = w => {
 	gsap.to('.planet__main , .footer , .mobile-btns-panel', {
 		duration: 0.1,
 		opacity: 0,
@@ -70,7 +95,6 @@ const createSection = data => {
 			<button class="mobile-btns-panel__btn">surface</button>
 			<div class="border"></div>
 		</div>
-
 
 		<div class="planet__imgs planet__imgs--${data[i].name.toLowerCase()}">
 			<img class="planet__imgs-img planet__imgs-img--first" src="${data[i].images.planet}"
@@ -105,25 +129,26 @@ handleData();
 burgerBtn.addEventListener('click', handleNav);
 allNavItems.forEach(item => {
 	item.addEventListener('click', e => {
+		handleBottomInfo();
 		allNavItems.forEach(item => item.classList.remove('nav__items-item--active'));
 		item.classList.add('nav__items-item--active');
 		const target = e.target;
 		if (target.classList.contains('nav__items-item--mercury')) {
-			show('0%');
+			slide('0%');
 		} else if (target.classList.contains('nav__items-item--venus')) {
-			show('200%');
+			slide('200%');
 		} else if (target.classList.contains('nav__items-item--earth')) {
-			show('400%');
+			slide('400%');
 		} else if (target.classList.contains('nav__items-item--mars')) {
-			show('600%');
+			slide('600%');
 		} else if (target.classList.contains('nav__items-item--jupiter')) {
-			show('800%');
+			slide('800%');
 		} else if (target.classList.contains('nav__items-item--saturn')) {
-			show('1000%');
+			slide('1000%');
 		} else if (target.classList.contains('nav__items-item--uranus')) {
-			show('1200%');
+			slide('1200%');
 		} else if (target.classList.contains('nav__items-item--neptune')) {
-			show('1400%');
+			slide('1400%');
 		}
 	});
 });
