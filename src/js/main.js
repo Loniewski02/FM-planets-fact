@@ -72,7 +72,7 @@ const createSection = data => {
 		</div>
 
 
-		<div class="planet__imgs">
+		<div class="planet__imgs planet__imgs--${data[i].name.toLowerCase()}">
 			<img class="planet__imgs-img planet__imgs-img--first" src="${data[i].images.planet}"
 				alt="">
 			<img class="planet__imgs-img planet__imgs-img--second"
@@ -106,9 +106,7 @@ burgerBtn.addEventListener('click', handleNav);
 allNavItems.forEach(item => {
 	item.addEventListener('click', e => {
 		allNavItems.forEach(item => item.classList.remove('nav__items-item--active'));
-
 		item.classList.add('nav__items-item--active');
-
 		const target = e.target;
 		if (target.classList.contains('nav__items-item--mercury')) {
 			show('0%');
