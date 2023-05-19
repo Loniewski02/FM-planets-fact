@@ -6,10 +6,12 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+	// 	border: 1px solid red;
 }
 
 html {
 	font-size: 62.5%;
+	overflow-x: hidden;
 }
 
 body {
@@ -56,7 +58,7 @@ button {
 	position: fixed;
 	top: 0;
 	height: 100vh;
-	width: 1600%;
+	width: 2000%;
 	background-image: url('../img/icons/background-stars.svg');
 	background-repeat: repeat-x;
 	z-index: -1;
@@ -363,8 +365,8 @@ button {
 
 			&--popup {
 				height: 100px;
-				z-index: 82;
-				transform: translate(-50%, 80%);
+				z-index: 8;
+				// transform: translate(-50%, 80%);
 			}
 		}
 	}
@@ -423,10 +425,13 @@ button {
 }
 
 .footer {
-	display: flex;
-	flex-direction: column;
-	row-gap: 0.8rem;
 	padding: 1.8em 1.5em 3em;
+
+	.wrapper {
+		display: flex;
+		flex-direction: column;
+		row-gap: 0.8rem;
+	}
 
 	&__box {
 		display: flex;
@@ -572,20 +577,28 @@ button {
 				background-color: transparent;
 				border: 1px solid rgba(255, 255, 255, 0.2);
 				cursor: pointer;
+				transition: background-color 0.3s;
 
 				span {
 					margin-right: 1.4rem;
 					opacity: 0.5;
+				}
+
+				&:hover {
+					background-color: $dark-gray;
 				}
 			}
 		}
 	}
 
 	.footer {
-		flex-direction: row;
-		row-gap: 0;
-		column-gap: 1.1rem;
 		padding: 1.8em 2.5em 3em;
+
+		.wrapper {
+			flex-direction: row;
+			row-gap: 0;
+			column-gap: 1.1rem;
+		}
 
 		&__box {
 			flex-direction: column;
@@ -697,7 +710,9 @@ button {
 	}
 
 	.footer {
-		column-gap: 3rem;
+		.wrapper {
+			column-gap: 3rem;
+		}
 
 		&__box {
 			padding: 1em 0.9em 1.2em;
@@ -713,5 +728,53 @@ button {
 				line-height: 5.2rem;
 			}
 		}
+	}
+}
+
+.planet-mercury {
+	.planet__btns-panel-btn--active {
+		background-color: $light-blue;
+	}
+}
+
+.planet-venus {
+	.planet__btns-panel-btn--active {
+		background-color: $yellow;
+	}
+}
+
+.planet-earth {
+	.planet__btns-panel-btn--active {
+		background-color: $purple;
+	}
+}
+
+.planet-mars {
+	.planet__btns-panel-btn--active {
+		background-color: $dark-orange;
+	}
+}
+
+.planet-jupiter {
+	.planet__btns-panel-btn--active {
+		background-color: $red;
+	}
+}
+
+.planet-saturn {
+	.planet__btns-panel-btn--active {
+		background-color: $orange;
+	}
+}
+
+.planet-uranus {
+	.planet__btns-panel-btn--active {
+		background-color: $very-light-blue;
+	}
+}
+
+.planet-neptune {
+	.planet__btns-panel-btn--active {
+		background-color: $blue;
 	}
 }

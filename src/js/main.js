@@ -23,16 +23,17 @@ const handleNav = () => {
 };
 
 gsap.to('.hero-bg', {
-	x: '-200vw',
+	x: '-300vw',
 	repeat: -1,
 	ease: 'linear',
-	duration: 60,
+	duration: 180,
 });
 
 async function handleData() {
 	const response = await axios.get(URL);
 
 	try {
+		console.log(response.data);
 		createSection(response.data);
 	} catch (error) {
 		console.error(error);
@@ -40,7 +41,7 @@ async function handleData() {
 }
 
 const show = w => {
-	gsap.to('.planet__main , .footer', {
+	gsap.to('.planet__main , .footer , .mobile-btns-panel', {
 		duration: 0.1,
 		opacity: 0,
 		visibility: 'hidden',
@@ -49,7 +50,7 @@ const show = w => {
 		duration: 2,
 		right: w,
 	});
-	gsap.to('.planet__main , .footer', {
+	gsap.to('.planet__main , .footer , .mobile-btns-panel', {
 		duration: 0.5,
 		delay: 2,
 		opacity: 1,
@@ -72,11 +73,11 @@ const createSection = data => {
 
 
 		<div class="planet__imgs">
-			<img class="planet__imgs-img planet__imgs-img--first" src="../dist/img/icons/planet-${data[i].name.toLowerCase()}.svg"
+			<img class="planet__imgs-img planet__imgs-img--first" src="${data[i].images.planet}"
 				alt="">
 			<img class="planet__imgs-img planet__imgs-img--second"
-				src="../dist/img/icons/planet-${data[i].name.toLowerCase()}-internal.svg" alt="">
-			<img class="planet__imgs-img planet__imgs-img--popup" src="../dist/img/icons/geology-${data[i].name.toLowerCase()}.png"
+				src="${data[i].images.internal}" alt="">
+			<img class="planet__imgs-img planet__imgs-img--popup" src="${data[i].images.geology}"
 				alt="">
 		</div>
 
@@ -89,7 +90,7 @@ const createSection = data => {
 						src="./dist/img/icons/icon-source.svg" alt=""></p>
 			</div>
 			<div class="planet__btns-panel">
-				<button class="planet__btns-panel-btn"><span>01</span>overview</button>
+				<button class="planet__btns-panel-btn planet__btns-panel-btn--active"><span>01</span>overview</button>
 				<button class="planet__btns-panel-btn"><span>02</span>Internal structure</button>
 				<button class="planet__btns-panel-btn"><span>03</span>surface geology</button>
 			</div>
