@@ -56,7 +56,7 @@ button {
 	position: fixed;
 	top: 0;
 	height: 100vh;
-	width: 2000vw;
+	width: 1600%;
 	background-image: url('../img/icons/background-stars.svg');
 	background-repeat: repeat-x;
 	z-index: -1;
@@ -160,6 +160,15 @@ button {
 			opacity: 0.8;
 			transition: opacity 0.2s;
 			cursor: pointer;
+
+			&--active {
+				opacity: 1;
+
+				&::after {
+					transform: scaleX(1);
+					transform-origin: left;
+				}
+			}
 
 			&:focus {
 				outline: none;
@@ -297,10 +306,11 @@ button {
 .main {
 	position: relative;
 	display: flex;
-	column-gap: 100vw;
+	column-gap: 100%;
 }
 
 .planet {
+	padding: 0 1.5em;
 	min-width: 100%;
 
 	.mobile-btns-panel {
@@ -412,6 +422,39 @@ button {
 	}
 }
 
+.footer {
+	display: flex;
+	flex-direction: column;
+	row-gap: 0.8rem;
+	padding: 1.8em 1.5em 3em;
+
+	&__box {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 0.5em 1.5em 0.8em;
+		border: 1px solid rgba(255, 255, 255, 0.2);
+
+		&-title {
+			font-size: 0.8rem;
+			color: $white;
+			text-transform: uppercase;
+			letter-spacing: 1px;
+			line-height: 1.6rem;
+			opacity: 0.5;
+		}
+
+		&-data {
+			font-family: 'Antonio', sans-serif;
+			font-size: 2rem;
+			color: $white;
+			letter-spacing: 0.7px;
+			line-height: 2.6rem;
+			text-transform: uppercase;
+		}
+	}
+}
+
 @media (min-width: 768px) {
 	.nav {
 		padding: 2em 1em 1em 1.7em;
@@ -465,8 +508,7 @@ button {
 	}
 
 	.planet {
-		padding: 0 1.5em;
-
+		padding: 0 2.5em;
 		.mobile-btns-panel {
 			display: none;
 		}
@@ -497,7 +539,6 @@ button {
 		&__info {
 			align-items: flex-start;
 			text-align: left;
-			min-width: 340px;
 
 			&-title {
 				margin-bottom: 2.4rem;
@@ -539,6 +580,29 @@ button {
 			}
 		}
 	}
+
+	.footer {
+		flex-direction: row;
+		row-gap: 0;
+		column-gap: 1.1rem;
+		padding: 1.8em 2.5em 3em;
+
+		&__box {
+			flex-direction: column;
+			align-items: flex-start;
+			padding: 1em 0.9em 1.2em;
+			width: 100%;
+
+			&-title {
+				margin-bottom: 0.8rem;
+			}
+
+			&-data {
+				font-size: 2.4rem;
+				line-height: 3.1rem;
+			}
+		}
+	}
 }
 
 @media (min-width: 992px) {
@@ -574,8 +638,6 @@ button {
 	}
 
 	.planet {
-		padding: 0 2em;
-
 		.wrapper {
 			display: flex;
 			align-items: center;
@@ -630,6 +692,25 @@ button {
 				span {
 					margin-right: 2.5rem;
 				}
+			}
+		}
+	}
+
+	.footer {
+		column-gap: 3rem;
+
+		&__box {
+			padding: 1em 0.9em 1.2em;
+
+			&-title {
+				font-size: 1.1rem;
+				line-height: 2.5rem;
+				margin-bottom: 0.4rem;
+			}
+
+			&-data {
+				font-size: 4rem;
+				line-height: 5.2rem;
 			}
 		}
 	}

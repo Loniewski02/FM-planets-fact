@@ -40,9 +40,20 @@ async function handleData() {
 }
 
 const show = w => {
+	gsap.to('.planet__main , .footer', {
+		duration: 0.1,
+		opacity: 0,
+		visibility: 'hidden',
+	});
 	gsap.to('.main', {
 		duration: 2,
 		right: w,
+	});
+	gsap.to('.planet__main , .footer', {
+		duration: 0.5,
+		delay: 2,
+		opacity: 1,
+		visibility: 'visible',
 	});
 };
 
@@ -61,11 +72,11 @@ const createSection = data => {
 
 
 		<div class="planet__imgs">
-			<img class="planet__imgs-img planet__imgs-img--first" src="../dist/img/icons/planet-${data[i].name}.svg"
+			<img class="planet__imgs-img planet__imgs-img--first" src="../dist/img/icons/planet-${data[i].name.toLowerCase()}.svg"
 				alt="">
 			<img class="planet__imgs-img planet__imgs-img--second"
-				src="../dist/img/icons/planet-${data[i].name}-internal.svg" alt="">
-			<img class="planet__imgs-img planet__imgs-img--popup" src="../dist/img/icons/geology-${data[i].name}.png"
+				src="../dist/img/icons/planet-${data[i].name.toLowerCase()}-internal.svg" alt="">
+			<img class="planet__imgs-img planet__imgs-img--popup" src="../dist/img/icons/geology-${data[i].name.toLowerCase()}.png"
 				alt="">
 		</div>
 
@@ -75,7 +86,7 @@ const createSection = data => {
 				<p class="planet__info-text">${data[i].overview.content}</p>
 				<p class="planet__info-source">Source: <a href="${data[i].overview.source}"
 						target="_blank" rel="noopener noreferrer">Wikipedia</a> <img
-						src="../dist/img/icons/icon-source.svg" alt=""></p>
+						src="./dist/img/icons/icon-source.svg" alt=""></p>
 			</div>
 			<div class="planet__btns-panel">
 				<button class="planet__btns-panel-btn"><span>01</span>overview</button>
@@ -93,23 +104,27 @@ handleData();
 burgerBtn.addEventListener('click', handleNav);
 allNavItems.forEach(item => {
 	item.addEventListener('click', e => {
+		allNavItems.forEach(item => item.classList.remove('nav__items-item--active'));
+
+		item.classList.add('nav__items-item--active');
+
 		const target = e.target;
 		if (target.classList.contains('nav__items-item--mercury')) {
-			show('0vw');
+			show('0%');
 		} else if (target.classList.contains('nav__items-item--venus')) {
-			show('200vw');
+			show('200%');
 		} else if (target.classList.contains('nav__items-item--earth')) {
-			show('400vw');
+			show('400%');
 		} else if (target.classList.contains('nav__items-item--mars')) {
-			show('600vw');
+			show('600%');
 		} else if (target.classList.contains('nav__items-item--jupiter')) {
-			show('800vw');
+			show('800%');
 		} else if (target.classList.contains('nav__items-item--saturn')) {
-			show('1000vw');
+			show('1000%');
 		} else if (target.classList.contains('nav__items-item--uranus')) {
-			show('1200vw');
+			show('1200%');
 		} else if (target.classList.contains('nav__items-item--neptune')) {
-			show('1400vw');
+			show('1400%');
 		}
 	});
 });
