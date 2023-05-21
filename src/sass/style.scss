@@ -60,7 +60,6 @@ button {
 	height: 100vh;
 	width: 1800%;
 	background-image: url('../img/icons/background-stars.svg');
-	background-repeat: repeat-x;
 	z-index: -1;
 }
 
@@ -773,7 +772,8 @@ button {
 		}
 
 		&__imgs {
-			min-height: 100vh;
+			height: 100vh;
+			max-height: 1200px;
 
 			&--mercury {
 				.planet__imgs-img--first,
